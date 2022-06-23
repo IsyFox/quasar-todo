@@ -1,13 +1,16 @@
 <template>
   <q-page class="bg-grey-3 column">
-    <q-list class="bg-white">
+    <q-list
+      class="bg-white"
+      separator
+      bordered>
       <q-item
         v-for="task in tasks"
         :key="task.title"
         v-ripple>
         <q-item-section avatar>
           <q-checkbox
-            v-model="color"
+            v-model="task.done"
             color="primary" />
         </q-item-section>
         <q-item-section>
@@ -26,7 +29,7 @@ export default {
       tasks: [
         {
           title: 'Comprar curso',
-          done: false
+          done: true
         },
         {
           title: 'Assistir curso ',

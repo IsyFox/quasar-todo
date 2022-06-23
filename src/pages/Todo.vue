@@ -1,5 +1,25 @@
 <template>
   <q-page class="bg-grey-3 column">
+    <div class="row q-pa-sm bg-primary">
+      <q-input
+        v-model="newTask"
+        @keyup.enter="addTask"
+        class="col"
+        square
+        filled
+        bg-color="white"
+        placeholder="Adicionar tarefa"
+        dense>
+        <template v-slot:append>
+          <q-btn
+          @click="addTask"
+            round
+            dense
+            flat
+            icon="add" />
+        </template>
+      </q-input>
+    </div>
     <q-list
       class="bg-white"
       separator
@@ -33,6 +53,17 @@
         </q-item-section>
       </q-item>
     </q-list>
+    <div
+      v-if="!tasks.length"
+      class="no-tasks absolute-center">
+      <q-icon
+        name="check"
+        size="100px"
+        color="primary" />
+      <div class="text-h5 text-primary text-center">
+        Sem tarefas
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -42,8 +73,9 @@ export default {
 
   data() {
     return {
+      newTask: '',
       tasks: [
-        {
+        /*{
           title: 'Comprar curso',
           done: true
         },
@@ -54,7 +86,7 @@ export default {
         {
           title: 'Praticar',
           done: false
-        }
+        }*/
       ]
     }
   },
@@ -75,9 +107,13 @@ export default {
         })
 
       })
-
-
-
+    },
+    addTask() {
+      this.tasks.push({
+        title: this.newTask,
+        done: false
+      })
+      this.newTask=''
     }
   }
 
@@ -91,6 +127,10 @@ export default {
       color: #bbb;
 
     }
+  }
+
+  .no-tasks {
+    opacity: 0.5;
   }
 
 </style>

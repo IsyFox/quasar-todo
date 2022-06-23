@@ -11,7 +11,7 @@
             color="primary" />
         </q-item-section>
         <q-item-section>
-          <q-item-label>Teal</q-item-label>
+          <q-item-label> {{ task.title }} </q-item-label>
         </q-item-section>
       </q-item>
     </q-list>
